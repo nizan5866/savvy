@@ -96,6 +96,17 @@ jobs:
         run: "awk 'NR==20 {$0=\"        image: ghcr.io/nizan5866/savvy:main_${{github.run_number}}\"} { print }' deployment.yaml"
 
 
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          source_file: 'deployment.yaml'
+          destination_repo: 'nizan5866/savvy_argocd'
+          destination_folder: 'files'
+          user_email: 'nizan5866@gmail.com'
+          user_name: 'nizan5866'
+          commit_message: 'A custom message for the commit'
       # # Sign the resulting Docker image digest except on PRs.
       # # This will only write to the public Rekor transparency log when the Docker
       # # repository is public to avoid leaking data.  If you would like to publish
