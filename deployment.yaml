@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: my-container-for-nginx
+        image: ghcr.io/nizan5866/savvy:main
+        resources:
+          requests:
+            cpu: "50m"
+          limits:
+            cpu: "100m"
+        ports:
+        - containerPort: 80
+
