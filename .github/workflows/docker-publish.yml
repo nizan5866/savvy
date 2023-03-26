@@ -93,7 +93,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: update the argo repo
-        run: "awk 'NR==20 {$0='        image: ghcr.io/nizan5866/savvy:main_${{github.run_number}}'} { print }' deployment.yaml"
+        run: "awk 'NR==20 {$0=\"        image: ghcr.io/nizan5866/savvy:main_${{github.run_number}}\"} { print }' deployment.yaml"
 
 
       # # Sign the resulting Docker image digest except on PRs.
